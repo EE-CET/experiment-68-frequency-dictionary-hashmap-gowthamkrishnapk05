@@ -4,18 +4,36 @@ import java.util.Scanner;
 
 public class Solution {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
+
+        // Check if there is any input to read
+        if (!sc.hasNextLine()) {
+            return;
+        }
+
+        // 1. Read the entire line of text
+        String line = sc.nextLine();
         
-        // TODO: Read a single line of text
-        
-        // TODO: Split the text into individual words
-        
-        // TODO: Create a HashMap to store the frequency of each word
-        
-        // TODO: Iterate through the words and update their frequencies in the map
-        
-        // TODO: Iterate through the map and print the unique words and their counts
-        // Format: "word: count"
-        
+        // 2. Split the line into individual words based on spaces
+        String[] words = line.split("\\s+");
+
+        // 3. Create a HashMap to store word frequencies
+        HashMap<String, Integer> wordCount = new HashMap<>();
+
+        for (String word : words) {
+            // If the word is empty (could happen with extra spaces), skip it
+            if (word.isEmpty()) continue;
+
+            // 4. Update the count in the map
+            // getOrDefault returns the current count or 0 if it's the first time seeing the word
+            wordCount.put(word, wordCount.getOrDefault(word, 0) + 1);
+        }
+
+        // 5. Print the unique words and their counts
+        for (Map.Entry<String, Integer> entry : wordCount.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+        }
+
+        sc.close();
     }
 }
